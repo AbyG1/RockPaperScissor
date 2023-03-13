@@ -1,1 +1,1 @@
-# RockPaperScissor
+Doing the first javascript project on the odin curriculum
