@@ -61,7 +61,6 @@ function game(){
             playerScore++;
          } else if(result.slice(4,5)==="L"){
             computerScore++;
-            console.log(computerScore);
          } else{
             continue;
          }
