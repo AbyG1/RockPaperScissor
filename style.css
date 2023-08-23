@@ -1,3 +1,24 @@
 body{
     text-align: center;
 }
+
+
+.display-container{
+    width: 500px;
+    height: 300px;
+    margin: 30px auto;
+    display: block;
+    
+}
+
+.player,.computer {
+    width: 243px;
+    height: 100px;
+    display:inline-block;
+    text-align:start;
+    
+
+}
+.border {
+    border : 2px solid red;
+}
