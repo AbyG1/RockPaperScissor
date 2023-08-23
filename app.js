@@ -6,9 +6,16 @@ buttons.forEach((button) => button.addEventListener('click', function(){
 } ));
 
 
+
+const resultDiv = document.querySelector('.display-container');
+const roundResult = document.createElement('p');
+resultDiv.appendChild(roundResult);
+
+
 function getComputerChoice() {
     let index = Math.floor(Math.random()*3);
     let array = ['rock','paper','scissors']
+    console.log(array[index]);
     return (array[index]);
     
 }
@@ -16,38 +23,30 @@ function getComputerChoice() {
 
 function playRound(playerChoice, computerChoice){
     playerChoice = playerChoice.toLowerCase();
-    if(computerChoice === "rock" && playerChoice === "rock"){a
-    console.log("It's a tie");
-    return "tie";
+    if(computerChoice === "rock" && playerChoice === "rock"){
+    roundResult.textContent = "It's a tie";
 } else if ( computerChoice === "rock" && playerChoice === "paper"){
-    console.log("You won, paper beats rock");
-    return "player";
+    roundResult.textContent = "You won, paper beats rock";
 }   else if (computerChoice === "rock" && playerChoice === "scissors"){
-    console.log("You lose, rock beats scissors");
-    return "computer";
+    roundResult.textContent = "You lose, rock beats scissors";
 }   else if (computerChoice === "paper" && playerChoice === "rock"){
-    console.log("You lose, paper beats rock");
-    return "computer";
+    roundResult.textContent = "You lose, paper beats rock";
 }   else if (computerChoice === "paper" && playerChoice === "paper"){
-    console.log("It's a tie");
-    return "tie";
+    roundResult.textContent = "It's a tie";
 }   else if (computerChoice === "paper" && playerChoice === "scissors"){
-    console.log('You won, scissors beat paper');
-    return "player";
+    roundResult.textContent = 'You won, scissors beat paper';
 }   else if (computerChoice === "scissors" && playerChoice === "rock"){
-    console.log('You won, rock beats scissors');
-    return "player";
+    roundResult.textContent = 'You won, rock beats scissors';
 }   else if (computerChoice === "scissors" && playerChoice === "paper"){
-    console.log('You lost, scissors beat paper');
-    return  "computer"
+    roundResult.textContent = 'You lost, scissors beat paper';
 }   else if (computerChoice === "scissors" && playerChoice === "scissors"){
-    console.log("It's a tie");
-    return "tie";
+    roundResult.textContent = "It's a tie";
 }   else {
     console.log("Invalid input.");
-    return "invalid"
 }
 }
+
+
     
    
 
