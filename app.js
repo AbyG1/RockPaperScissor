@@ -4,13 +4,25 @@ let computerScoreValue = document.getElementById('cs');
 let playerScoreValue = document.getElementById('ps');
 let playerSelection = document.getElementById('player-selection');
 let computerSelection = document.getElementById('computer-selection');
+const displayResult = document.createElement('p');
+const resultDiv = document.querySelector('.display-container');
+
 
 computerScoreValue.textContent += computerScore;
 playerScoreValue.textContent += playerScore;
 
 
-let buttons = document.querySelectorAll('button');
-buttons.forEach((button) => button.addEventListener('click', function(){
+
+const roundResult = document.createElement('p');
+resultDiv.appendChild(roundResult);
+
+
+
+
+    
+    
+    let buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => button.addEventListener('click', function(){
     let computerChoice = getComputerChoice();
     playerSelection.textContent = `Player Selection:${button.textContent}`;
     playRound(button.textContent,computerChoice);
@@ -18,9 +30,9 @@ buttons.forEach((button) => button.addEventListener('click', function(){
 
 
 
-const resultDiv = document.querySelector('.display-container');
-const roundResult = document.createElement('p');
-resultDiv.appendChild(roundResult);
+
+
+
 
 
 function getComputerChoice() {
@@ -69,43 +81,58 @@ function playRound(playerChoice, computerChoice){
 }
 
 
-function keepTrackOfScore(result){
+function keepTrackOfScore(result) {
     
     if(result === 1) {
         playerScore++;
         playerScoreValue.textContent = `Player Score:${playerScore}`;
-        
+        console.log('ps'+playerScore);
     } else if (result === -1) {
         computerScore++;
         computerScoreValue.textContent = `Computer Score:${computerScore}`;
+        console.log('cs'+computerScore);
+    }
+    
+    if (playerScore === 5 || computerScore === 5) {
+         
+    
+        if (playerScore === 5) {
+            displayResult.textContent = 'You Won!';
+        } else {
+            displayResult.textContent = 'You lost!';
+        }
+        resultDiv.appendChild(displayResult);
+        
+        restartGame();
+        buttons.forEach((button) => button.disabled = true);
     }
     
     
 }
 
-//  function game(){
-//     let result;
-//     let computerScore = 0;
-//     let playerScore = 0;
-//     for(let i = 0; i < 5; i++){
-//         result = playRound(getPlayerChoice(),getComputerChoice());
-//         if (result == "computer"){
-//             computerScore++;
-//         } else if(result == "player"){
-//             playerScore++;
-//         } else {
-//             continue;
-//         }
-//     }
-//     if (playerScore > computerScore){
-//         return console.log(`You won, score=${playerScore}:${computerScore}`);
-//     } else if (playerScore < computerScore){
-//         return console.log(`You lose, score=${computerScore}:${playerScore}`);
-//     } else {
-//         return console.log(`It's a tie, score=${computerScore}:${playerScore}`)
-//     }
-// }
-
+function restartGame() {
+    const replay = document.createElement('button');
+    resultDiv.appendChild(replay);
+    replay.textContent = "Play Again";
+    replay.addEventListener('click',() => {
+        computerScore = 0;
+        playerScore = 0;
+        computerScoreValue.textContent = `Computer Score: ${computerScore}`;
+        playerScoreValue.textContent = `Player Score: ${playerScore}`;
+        
+        // Clear round result and display messages
+        roundResult.textContent = '';
+        displayResult.textContent = '';
+        
+        // Enable buttons again
+        buttons.forEach((button) => button.disabled = false);
+        
+        // Remove the replay button
+        resultDiv.removeChild(replay);
+    });
+    
+    resultDiv.appendChild(replay);
+}
 
 
 
